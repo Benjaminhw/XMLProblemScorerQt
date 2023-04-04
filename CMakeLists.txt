@@ -27,6 +27,8 @@ set(PROJECT_SOURCES
         ./tinyxml/tinyxml.h
         ./tinyxml/tinyxmlerror.cpp
         ./tinyxml/tinyxmlparser.cpp
+        problemxmlparser.cpp
+        problemxmlparser.h
         ${TS_FILES}
 )
 

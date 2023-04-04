@@ -1,0 +1,31 @@
+<problems>
+    <easy>
+    <multichoice>
+        <head></head>
+        <value>114514</value>
+        <unit>m/s</unit>
+        <parameter>
+            <a>1</a>
+            <b>1</b>
+        </parameter>
+    </multichoice>
+    <property1>
+        <name>temperature</name>
+        <value>-273</value>
+        <unit>celcius</unit>
+        <parameter>
+            <a>1</a>
+            <b>1</b>
+        </parameter>
+    </property1>
+    <property1>
+        <name>mass</name>
+        <value>1000</value>
+        <unit>kg</unit>
+        <parameter>
+            <a>1</a>
+            <b>1</b>
+        </parameter>
+    </property1>
+    </easy>
+</problems>
