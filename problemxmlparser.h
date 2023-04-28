@@ -6,8 +6,6 @@ class ProblemXMLParser
 {
 public:
     ProblemXMLParser(QString problemfilepath);
-
-
 };
 
 #endif // PROBLEMXMLPARSER_H

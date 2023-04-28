@@ -52,3 +52,9 @@ class BlankFilling:public BaseProblemStructure
     QString answer;
     void ShowYourSelf() override;
 };
+
+class SubjectSets{
+public:
+    int Subject;
+    QVector<>
+};
