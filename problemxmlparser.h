@@ -1,11 +1,12 @@
 ﻿#ifndef PROBLEMXMLPARSER_H
 #define PROBLEMXMLPARSER_H
-
+#include <QString>
 
 class ProblemXMLParser
 {
 public:
-    ProblemXMLParser();
+    ProblemXMLParser(QString problemfilepath);
+
 
 };
 

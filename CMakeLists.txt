@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+﻿cmake_minimum_required(VERSION 3.5)
 
 project(ProblemScorer VERSION 0.1 LANGUAGES CXX)
 
@@ -29,6 +29,7 @@ set(PROJECT_SOURCES
         ./tinyxml/tinyxmlparser.cpp
         problemxmlparser.cpp
         problemxmlparser.h
+        problemstructure.h
         ${TS_FILES}
 )
 
