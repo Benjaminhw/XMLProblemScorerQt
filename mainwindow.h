@@ -1,6 +1,7 @@
 ﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
+#pragma once
+#include "problemstructure.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -20,6 +21,6 @@ private slots:
     void on_pushButton_clicked();
 
 private:
-
+    AllData Problems;
 };
 #endif // MAINWINDOW_H

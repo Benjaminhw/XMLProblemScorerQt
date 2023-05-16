@@ -1,7 +1,9 @@
 ﻿#ifndef PROBLEMSTRUCTURE_H
 #define PROBLEMSTRUCTURE_H
+#pragma once
 #include <QString>
 #include <QVector>
+#include <QMap>
 
 #endif // PROBLEMSTRUCTURE_H
 
@@ -60,3 +62,8 @@ public:
     QVector<BriefAnswerQuestion> BriefAnswerSet;
     QVector<BlankFilling> BlankFillingSet;
 };
+
+typedef class AllData{
+public:
+    QMap<int,SubjectSets> SubjectMap;
+}*pAllData;
