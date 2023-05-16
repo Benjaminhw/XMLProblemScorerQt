@@ -4,7 +4,7 @@
 
 
 //应该可以通过搜寻的对象反过来去命名
-ProblemXMLParser::ProblemXMLParser(QString problemfilepath)
+ProblemXMLParser::ProblemXMLParser(QString problemfilepath,pAllData pData)
 {
     TiXmlDocument* tinyXMLDoc = new TiXmlDocument;//创建一个XML读取器
     if(!tinyXMLDoc->LoadFile(problemfilepath.toStdString().data()))
@@ -16,10 +16,24 @@ ProblemXMLParser::ProblemXMLParser(QString problemfilepath)
     qDebug()<<"XML parse SUCCESS!";
     TiXmlElement* ProblemLibrary;
     ProblemLibrary=tinyXMLDoc->RootElement();
+
+//    QMap<int,QString> NameMap;
+//    NameMap.insert((int)ProblemSubject::Math,QString("math"));
+//    NameMap.insert((int)ProblemSubject::English,QString("english"));
+//    NameMap.insert((int)ProblemSubject::Physics,QString("physics"));
+
+    QVector<QString> Names={"math",
+                            "english",
+                            "physics",
+                            "classicalworks",
+                            "harrypotter",
+                            "Commonsense",};
+
     TiXmlElement* math=ProblemLibrary->FirstChildElement("math");
 
     if(math)
     {
+
         TiXmlElement* multichoicepart=math->FirstChildElement("multichoicepart");
         if(multichoicepart)
         {
@@ -28,10 +42,11 @@ ProblemXMLParser::ProblemXMLParser(QString problemfilepath)
             {
                 for(;multichoice!=nullptr;multichoice=multichoice->NextSiblingElement("multichoice"))
                 {
+                    MultiChoices tempMulti;
                     TiXmlElement* head=multichoice->FirstChildElement("head");//名称 寻找property的第一个名为name的孩子
                     if(head)
                     {
-                        tempName = head->GetText();//名称录入
+                        tempMulti.head = head->GetText();//名称录入
                         qDebug()<<head->GetText();
                     }
                     else

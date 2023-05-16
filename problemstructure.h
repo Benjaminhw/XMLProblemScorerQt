@@ -56,5 +56,7 @@ class BlankFilling:public BaseProblemStructure
 class SubjectSets{
 public:
     int Subject;
-    QVector<>
+    QVector<MultiChoices> MultiChoicesSet;
+    QVector<BriefAnswerQuestion> BriefAnswerSet;
+    QVector<BlankFilling> BlankFillingSet;
 };
