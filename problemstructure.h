@@ -38,21 +38,21 @@ class MultiChoices:public BaseProblemStructure
  public:
     QVector<QString> choices;
     int answer;
-    void ShowYourSelf() override;
+    void ShowYourSelf() override{};
 };
 
 class BriefAnswerQuestion:public BaseProblemStructure
 {
  public:
     QString answer;
-    void ShowYourSelf() override;
+    void ShowYourSelf() override{};
 };
 
 class BlankFilling:public BaseProblemStructure
 {
  public:
     QString answer;
-    void ShowYourSelf() override;
+    void ShowYourSelf() override{};
 };
 
 class SubjectSets{

@@ -19,7 +19,6 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
     //要有数据结构 框架 和抽题的比率
-
     ProblemXMLParser("ProblemTest.xml",&Problems);
 
 }
