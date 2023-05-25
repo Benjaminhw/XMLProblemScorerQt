@@ -22,6 +22,7 @@ ProblemXMLParser::ProblemXMLParser(QString problemfilepath,pAllData pData)
     //    NameMap.insert((int)ProblemSubject::English,QString("english"));
     //    NameMap.insert((int)ProblemSubject::Physics,QString("physics"));
 
+    //2023-05-25 BenjaminH @MZ Tech 真好用
     QVector<QString> Names={"math",
                             "english",
                             "physics",
@@ -47,16 +48,36 @@ ProblemXMLParser::ProblemXMLParser(QString problemfilepath,pAllData pData)
                     {
                         MultiChoices tempMulti;
                         TiXmlElement* head=multichoice->FirstChildElement("head");//名称 寻找property的第一个名为name的孩子
-                        if(head && head->GetText())
+                        TiXmlElement* picture=multichoice->FirstChildElement("picture");
+                        if(head||picture)
                         {
                             //GetText失败会返回0所以可以直接用
-                            //题目一定要有
-                            tempMulti.head = head->GetText();//名称录入
-                            qDebug()<<tempMulti.head;
-
+                            //题目或者图片一定要有
+                            if(head && head->GetText())
+                            {
+                                tempMulti.head = head->GetText();//名称录入
+                                qDebug()<<tempMulti.head;
+                            }
+                            if(picture&&picture->GetText())
+                            {
+                                tempMulti.picturepath=picture->GetText();
+                                qDebug()<<tempMulti.picturepath;
+                            }
+                            TiXmlElement* choices=multichoice->FirstChildElement("choices");
+                            if(choices)
+                            {
+                                for(auto choice=choices->FirstChildElement();choice!=nullptr;choice->NextSiblingElement())
+                                {
+                                    tempMulti.nameofchoice.emplaceBack(choice->Value());
+                                    //qDebug()<<choice->Value();
+                                    tempMulti.choices.emplaceBack(choice->GetText());
+                                    qDebug()<<choice->GetText();
+                                }
+                            }
                         }
                         else
                         {//边界的处理，如果是空指针，或者题目没有内容，就直接开始读下一个节点
+                            qDebug()<<"Empty Problem!"<<Qt::endl;
                             continue;
                         }
                     }
@@ -75,6 +96,29 @@ ProblemXMLParser::ProblemXMLParser(QString problemfilepath,pAllData pData)
                         if(head&& head->GetText())
                         {
                             tempBF.head = head->GetText();//名称录入
+                            qDebug()<<tempBF.head;
+                        }
+                        else
+                        {//边界的处理，如果是空指针，就直接break2
+                            break;
+                        }
+                    }
+                }
+            }
+            TiXmlElement* briefanswerquestionpart=theSubjectName->FirstChildElement("briefanswerquestionpart");
+            if(briefanswerquestionpart)
+            {
+                TiXmlElement* briefanswerquestion=briefanswerquestionpart->FirstChildElement("briefanswerquestion");
+                if(briefanswerquestion)
+                {
+                    for(;briefanswerquestion!=nullptr;briefanswerquestion=briefanswerquestion->
+                        NextSiblingElement("briefanswerquestion"))
+                    {
+                        BriefAnswerQuestion tempBAQ;
+                        TiXmlElement* head=briefanswerquestion->FirstChildElement("head");//名称 寻找property的第一个名为name的孩子
+                        if(head&& head->GetText())
+                        {
+                            tempBAQ.head = head->GetText();//名称录入
                             qDebug()<<head->GetText();
                         }
                         else
