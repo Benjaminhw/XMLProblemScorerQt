@@ -4,10 +4,11 @@
 #include "problemstructure.h"
 #include <QString>
 
-class ProblemXMLParser
+class ProblemXMLParserC
 {
 public:
-    ProblemXMLParser(QString problemfilepath,pAllData pData);
+    void ProblemXMLParser(QString problemfilepath,pAllData pData);
+    void ProblemPrinter(pAllData pData);
 };
 
 #endif // PROBLEMXMLPARSER_H

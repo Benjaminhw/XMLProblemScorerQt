@@ -36,10 +36,10 @@ public:
 class MultiChoices:public BaseProblemStructure
 {
  public:
-    QVector<QString> nameofchoice;  //选项的名称
-    QVector<QString> choices;       //选项的内容
-    int answer;                     //答案
-    void ShowYourSelf() override{}; //将自己打印至试卷的函数
+    QVector<QString> nameofchoice;      //选项的名称
+    QVector<QString> choices;           //选项的内容
+    int answer=-1;                      //答案 默认-1
+    void ShowYourSelf() override{};     //将自己打印至试卷的函数
 };
 
 class BriefAnswerQuestion:public BaseProblemStructure
