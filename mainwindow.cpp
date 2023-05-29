@@ -21,6 +21,6 @@ void MainWindow::on_pushButton_clicked()
     ProblemXMLParserC MainParserFactory;
     //要有数据结构 框架 和抽题的比率
     MainParserFactory.ProblemXMLParser("ProblemTest.xml",&Problems);
-
+    MainParserFactory.ProblemPrinter(&Problems);
 }
 
