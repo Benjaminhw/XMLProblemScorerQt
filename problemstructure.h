@@ -17,11 +17,14 @@ enum class ProblemType
 //可以用来统一读入统一处理
 enum class ProblemSubject
 {
+    //main subject
     Math,
     English,
     Physics,
+    //assisted subject
     ClassicalWorks,
     HarryPotter,
+    //
     Commonsense,
 };
 
@@ -67,4 +70,5 @@ public:
 typedef class AllData{
 public:
     QMap<int,SubjectSets> SubjectMap;
+
 }*pAllData;

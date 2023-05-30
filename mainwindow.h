@@ -22,5 +22,6 @@ private slots:
 
 private:
     AllData Problems;
+    void ProblemPrinter(pAllData pData);
 };
 #endif // MAINWINDOW_H

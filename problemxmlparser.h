@@ -8,7 +8,7 @@ class ProblemXMLParserC
 {
 public:
     void ProblemXMLParser(QString problemfilepath,pAllData pData);
-    void ProblemPrinter(pAllData pData);
+    //void ProblemPrinter(pAllData pData);
 };
 
 #endif // PROBLEMXMLPARSER_H

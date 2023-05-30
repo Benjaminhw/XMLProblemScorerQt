@@ -3,12 +3,7 @@
 #include "QDebug"
 
 
-void ProblemXMLParserC::ProblemPrinter(pAllData pData)
-{
-    //要根据不同的学科选取不同的知识分布
-    //main subject主学科
 
-}
 
 //应该可以通过搜寻的对象反过来去命名
 void ProblemXMLParserC::ProblemXMLParser(QString problemfilepath,pAllData pData)
