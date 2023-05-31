@@ -33,6 +33,9 @@ void MainWindow::ProblemPrinter(pAllData pData)
     //main subject主学科
     for(int x=0;x<3;++x)
     {
-        pData->SubjectMap.find(x).value();
+        if(pData->SubjectMap.find(x)!=pData->SubjectMap.end())
+        {
+            auto y=pData->SubjectMap.find(x).value();
+        }
     }
 }
