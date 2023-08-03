@@ -1,5 +1,6 @@
 ﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
+#include "qdatetime.h"
 #pragma once
 #include "problemstructure.h"
 #include <QMainWindow>
@@ -20,8 +21,13 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_pushButton_2_clicked();
+
 private:
     AllData Problems;
     void ProblemPrinter(pAllData pData);
+    QDateTime targetTime;
+    QTimer* timer;
+    QTimer* timer1;
 };
 #endif // MAINWINDOW_H

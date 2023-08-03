@@ -50,23 +50,23 @@
                 <head>row除了划船之外，还有什么别的意思？</head>
                 <picture></picture>
                 <choices>
-                    <A>路</A>
-                    <B>列</B>
-                    <C>行</C>
-                    <D>浮</D>
+                    <A>n.路</A>
+                    <B>n.列</B>
+                    <C>n.行</C>
+                    <D>n.浮</D>
                 </choices>
                 <answer>C</answer>
             </multichoice>
             <multichoice>
-                <head></head>
+                <head>mind做名词时有“头脑，心智”的意思，做动词时有什么意思？</head>
                 <picture></picture>
                 <choices>
-                    <A></A>
-                    <B></B>
-                    <C></C>
-                    <D></D>
+                    <A>v.思考，沉思</A>
+                    <B>v.想出，想到</B>
+                    <C>v.关心，介意</C>
+                    <D>v.掩盖，掩埋</D>
                 </choices>
-                <answer></answer>
+                <answer>C</answer>
             </multichoice>
         </multichoicepart>
         <briefanswerquestionpart>
