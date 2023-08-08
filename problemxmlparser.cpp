@@ -43,6 +43,7 @@ void ProblemXMLParserC::ProblemXMLParser(QString problemfilepath,pAllData pData)
         {
             SubjectSets tempSubjectSet;
             tempSubjectSet.Subject=count;
+            tempSubjectSet.SubjectName =x;
             TiXmlElement* multichoicepart=theSubjectName->FirstChildElement("multichoicepart");
             if(multichoicepart)
             {
@@ -65,7 +66,7 @@ void ProblemXMLParserC::ProblemXMLParser(QString problemfilepath,pAllData pData)
                             }
                             if(picture&&picture->GetText())
                             {
-                                tempMulti.picturepath=picture->GetText();
+                                tempMulti.picturepath = picture->GetText();
                                 qDebug()<<tempMulti.picturepath;
                             }
                             TiXmlElement* choices=multichoice->FirstChildElement("choices");

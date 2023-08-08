@@ -68,6 +68,28 @@
                 </choices>
                 <answer>C</answer>
             </multichoice>
+            <multichoice>
+                <head>like除了有“v.喜欢”的意思,还有什么别的意思？</head>
+                <picture></picture>
+                <choices>
+                    <A>prep.立刻,马上</A>
+                    <B>prep.相似，比如</B>
+                    <C>adj.令人喜欢、爱戴的</C>
+                    <D>adj.似曾相识的</D>
+                </choices>
+                <answer>B</answer>
+            </multichoice>
+            <multichoice>
+                <head>likely的意思是？</head>
+                <picture></picture>
+                <choices>
+                    <A>adv.令人喜欢地</A>
+                    <B>adv.借由，借以</B>
+                    <C>adv.然而</C>
+                    <D>adv.可能</D>
+                </choices>
+                <answer>B</answer>
+            </multichoice>
         </multichoicepart>
         <briefanswerquestionpart>
             <briefanswerquestion>
@@ -85,26 +107,26 @@
     <physics>
         <multichoicepart>
             <multichoice>
-                <head></head>
+                <head>汽车在山路上匀速爬升的过程中，它的____</head>
                 <picture></picture>
                 <choices>
-                    <A></A>
-                    <B></B>
-                    <C></C>
-                    <D></D>
+                    <A>重力势能增大，动能增大</A>
+                    <B>重力势能减小，动能不变</B>
+                    <C>机械能增大，动能不变</C>
+                    <D>机械能减小，动能减小</D>
                 </choices>
-                <answer></answer>
+                <answer>C</answer>
             </multichoice>
             <multichoice>
                 <head></head>
-                <picture></picture>
+                <picture>Physics_test_01.png</picture>
                 <choices>
                     <A></A>
                     <B></B>
                     <C></C>
                     <D></D>
                 </choices>
-                <answer></answer>
+                <answer>D</answer>
             </multichoice>
         </multichoicepart>
         <briefanswerquestionpart>

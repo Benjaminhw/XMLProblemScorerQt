@@ -19,7 +19,7 @@ public:
     Ui::MainWindow *ui;
 
 private slots:
-    void on_pushButton_clicked();
+    void on_pushButton_clicked();  // 善意的提醒
 
     void on_pushButton_2_clicked();
 
@@ -29,5 +29,7 @@ private:
     QDateTime targetTime;
     QTimer* timer;
     QTimer* timer1;
+    int RemainingTime;
+    void TestScorer();
 };
 #endif // MAINWINDOW_H
