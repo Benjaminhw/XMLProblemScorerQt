@@ -55,7 +55,7 @@
                     <C>n.行</C>
                     <D>n.浮</D>
                 </choices>
-                <answer>C</answer>
+                <answer>2</answer>
             </multichoice>
             <multichoice>
                 <head>mind做名词时有“头脑，心智”的意思，做动词时有什么意思？</head>
@@ -66,7 +66,7 @@
                     <C>v.关心，介意</C>
                     <D>v.掩盖，掩埋</D>
                 </choices>
-                <answer>C</answer>
+                <answer>2</answer>
             </multichoice>
             <multichoice>
                 <head>like除了有“v.喜欢”的意思,还有什么别的意思？</head>
@@ -77,7 +77,7 @@
                     <C>adj.令人喜欢、爱戴的</C>
                     <D>adj.似曾相识的</D>
                 </choices>
-                <answer>B</answer>
+                <answer>1</answer>
             </multichoice>
             <multichoice>
                 <head>likely的意思是？</head>
@@ -88,7 +88,7 @@
                     <C>adv.然而</C>
                     <D>adv.可能</D>
                 </choices>
-                <answer>B</answer>
+                <answer>1</answer>
             </multichoice>
         </multichoicepart>
         <briefanswerquestionpart>
@@ -115,7 +115,7 @@
                     <C>机械能增大，动能不变</C>
                     <D>机械能减小，动能减小</D>
                 </choices>
-                <answer>C</answer>
+                <answer>2</answer>
             </multichoice>
             <multichoice>
                 <head></head>
@@ -126,7 +126,7 @@
                     <C></C>
                     <D></D>
                 </choices>
-                <answer>D</answer>
+                <answer>3</answer>
             </multichoice>
         </multichoicepart>
         <briefanswerquestionpart>

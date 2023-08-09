@@ -73,3 +73,12 @@ public:
     QMap<int,SubjectSets> SubjectMap;
 
 }*pAllData;
+
+class AnswerSets{
+public:
+    int Subject;
+    QString SubjectName;
+    QVector<int> MultiChoicesAnswers;
+    QVector<QString> BriefAnswerAnswers;
+    QVector<QString> BlankFillingAnswers;
+};

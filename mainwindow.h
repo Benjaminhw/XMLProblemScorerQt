@@ -1,5 +1,6 @@
 ﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
+#include "qabstractbutton.h"
 #include "qdatetime.h"
 #pragma once
 #include "problemstructure.h"
@@ -31,5 +32,9 @@ private:
     QTimer* timer1;
     int RemainingTime;
     void TestScorer();
+    QVector<QVector<QButtonGroup*>> ButtonGroups;
+    //QVector<QVector<int>> PickedNumber;
+    QVector<QVector<int>> PickedNumber;
+    AnswerSets Answers;
 };
 #endif // MAINWINDOW_H
