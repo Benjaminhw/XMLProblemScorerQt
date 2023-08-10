@@ -68,17 +68,21 @@ public:
     QVector<BlankFilling> BlankFillingSet;
 };
 
+class AnswerSet{
+public:
+//    int Subject;
+//    QString SubjectName;
+//    QVector<int> MultiChoicesAnswers;
+//    QVector<QString> BriefAnswerAnswers;
+//    QVector<QString> BlankFillingAnswers;
+    QVector<int> AnswerNums;
+    QVector<QString> AnswerStrings;
+};
+
+
 typedef class AllData{
 public:
     QMap<int,SubjectSets> SubjectMap;
-
+    AnswerSet Answers;
+    int Score=0;
 }*pAllData;
-
-class AnswerSets{
-public:
-    int Subject;
-    QString SubjectName;
-    QVector<int> MultiChoicesAnswers;
-    QVector<QString> BriefAnswerAnswers;
-    QVector<QString> BlankFillingAnswers;
-};

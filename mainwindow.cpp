@@ -8,6 +8,8 @@
 #include <QButtonGroup>
 #include "qpixmap.h"
 #include <QRandomGenerator>
+#include <QImage>
+#include <QImageReader>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -75,8 +77,24 @@ void MainWindow::ProblemPrinter(pAllData pData)
 
     //要根据不同的学科选取不同的知识分布
     //main subject主学科 主学科各占20分，数学，物理，英语三门共60分
-    for(int x=0;x<3;++x)
+    for(int x=0;x<6;++x)
     {
+        int ProblemsNumberNeeded=0;
+        if(x<3)
+        {
+            //主学科选填都为2
+            ProblemsNumberNeeded=2;
+        }
+        else if(x<5)
+        {
+            //名著与HarryPotter都为1
+            ProblemsNumberNeeded=1;
+        }
+        else if(x<6)
+        {
+            //常识为2
+            ProblemsNumberNeeded=2;
+        }
         QVBoxLayout* SubjectLayout = new QVBoxLayout;
         if(pData->SubjectMap.find(x)!=pData->SubjectMap.end())
         {
@@ -92,27 +110,29 @@ void MainWindow::ProblemPrinter(pAllData pData)
             TempHLayout->addWidget(tempLine);
             TempHLayout->setStretch(0,0);
             TempHLayout->setStretch(1,1);
+            TempHLayout->setContentsMargins(0,5,0,5);
             SubjectLayout->addLayout(TempHLayout);
 
             //处理选择题区域 主学科预计两题选择
             //同时进行数据处理和UI处理
             //随机挑两题（按size来生成随机数）  //注意，这里主学科至少要两题
             QVector<int> target;
-            for(int i=0;i<2;++i)
+            for(int i=0;i<ProblemsNumberNeeded;++i)
             {
                 int tempsize = y.MultiChoicesSet.size();
-                int x=QRandomGenerator::global()->bounded(tempsize);
-                while(target.contains(x))
+                int w=QRandomGenerator::global()->bounded(tempsize);
+                while(target.contains(w))
                 {
-                    x=QRandomGenerator::global()->bounded(tempsize);
+                    w=QRandomGenerator::global()->bounded(tempsize);
                 }
-                target.emplaceBack(x);
+                target.emplaceBack(w);
             }
-
-            //编排UI
+            //UI处理
             QVector<QButtonGroup*> tempVectorButtonGroup;
-            for(auto& z:y.MultiChoicesSet)
+            //for(auto& z:y.MultiChoicesSet)
+            for(auto& v:target)
             {
+                auto z =y.MultiChoicesSet[v];
                 QVBoxLayout* ProblemLayout = new QVBoxLayout;
                 QLabel* ProblemHead = new QLabel;
                 if(z.head!="")
@@ -122,37 +142,54 @@ void MainWindow::ProblemPrinter(pAllData pData)
                 }
                 else if(z.picturepath!="")
                 {
-                    ProblemHead->setPixmap(QPixmap(z.picturepath));
+                    QImage image(z.picturepath);
+                    QImageReader imageReader(z.picturepath);
+                    QSize PicSize=imageReader.size();
+                    QImage imageC=image.scaled(PicSize,Qt::KeepAspectRatio);
+                    //ProblemHead->setPixmap(QPixmap(z.picturepath));
+                    ProblemHead->setPixmap(QPixmap::fromImage(imageC));
+                    //ProblemHead->setMinimumHeight(PicSize.height()-100);
+                    //ProblemHead->setMinimumWidth(PicSize.width()-100*PicSize.width()/PicSize.height());
+                    QSize PicSizeMax=QSize(PicSize.height()+100,PicSize.width()+100*PicSize.width()/PicSize.height());
+                    //No Big Use
+                    //QSize PicSizeMin=QSize(PicSize.height()-100,PicSize.width()-100*PicSize.width()/PicSize.height());
+                    ProblemHead->setMinimumSize(PicSize);
+                    ProblemHead->setMaximumSize(PicSizeMax);
+                    ProblemHead->setContentsMargins(0,0,0,10);//不设置空白的话莫名其妙会出现一些重叠
                     ProblemHead->setScaledContents(true);
                 }
                 ProblemLayout->addWidget(ProblemHead);
                 //QFrame* tempFrame = new QFrame;
                 QButtonGroup* tempGroup = new QButtonGroup;
-                for(auto& w:z.choices)
+                for(int k=0;k<z.choices.size();++k)
                 {
                     QPushButton* TempPushButton = new QPushButton;
-                    TempPushButton->setText(w);
+                    TempPushButton->setText(/*z.nameofchoice[k]+". "+*/z.choices[k]);
                     TempPushButton->setCheckable(true);
                     TempPushButton->setMaximumWidth(180);
                     tempGroup->addButton(TempPushButton);
+                    tempGroup->setId(TempPushButton,k);
                     ProblemLayout->addWidget(TempPushButton);
                 }
                 tempVectorButtonGroup.emplaceBack(tempGroup);
                 SubjectLayout->addLayout(ProblemLayout);
+                //DATA-录入答案。选择题录选项，填空题录字符串（多选项匹配）
+                AnswerSet tempAnswerSet;
+                //tempAnswerSet.Type=0; //类型为0代表是选择题
+                //tempAnswerSet.AnswerNum=z.answer;
+                pData->Answers.AnswerNums.emplace_back(z.answer);
             }
+            //UI-一个学科的[选择题]处理完，把选项全部推入ButtonGroup的二维数组，由STL控制内存的删除
             ButtonGroups.emplaceBack(tempVectorButtonGroup);
-            //一个学科的东西处理完，把选项全部推入ButtonGroup的二维数组，由STL控制内存
-
         }
-        //学科添加完毕
+        //UI-学科添加完毕
         OverallLayout->addLayout(SubjectLayout);
-
     }
     //Harry Potter占10分
 
-    //红楼和三国占10分
+    //红楼和三国(classics)占10分 但这样可能2题都是红楼或者两题都是三国
 
-    //common sense占10分
+    //common sense占20分
 
     OverallLayout->addStretch();
 }
@@ -160,11 +197,27 @@ void MainWindow::ProblemPrinter(pAllData pData)
 void MainWindow::on_pushButton_2_clicked()
 {
     //交卷
-    TestScorer();
+    TestScorer(&Problems);
 }
 
-void MainWindow::TestScorer()
+void MainWindow::TestScorer(pAllData pData)
 {
-    //qDebug() << "Nothing happened";
+    //qDebug() << "Nothing happened.";
+    int i =0;
+    for(auto& x:this->ButtonGroups)
+    {
+        for(auto& y:x)
+        {
+            qDebug() <<"选择的ID是" << y->checkedId();
+            qDebug() <<"答案的ID是" << pData->Answers.AnswerNums[i];
+            if(y->checkedId()==pData->Answers.AnswerNums[i])
+            {
+                //一题五分
+                pData->Score+=5;
+            }
+            ++i;
+        }
+    }
+    qDebug()<<pData->Score;
 }
 

@@ -31,10 +31,9 @@ private:
     QTimer* timer;
     QTimer* timer1;
     int RemainingTime;
-    void TestScorer();
+    void TestScorer(pAllData pData);
     QVector<QVector<QButtonGroup*>> ButtonGroups;
     //QVector<QVector<int>> PickedNumber;
     QVector<QVector<int>> PickedNumber;
-    AnswerSets Answers;
 };
 #endif // MAINWINDOW_H

@@ -1,27 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--  名著选择题为红楼，填空题为三国  -->
 <problems>
     <math>
         <multichoicepart>
             <multichoice>
-                <head></head>
+                <head>一次函数y＝kx﹣1（常数k＜0）的图象一定不经过的象限是____</head>
                 <picture></picture>
                 <choices>
-                    <A></A>
-                    <B></B>
-                    <C></C>
-                    <D></D>
+                    <A>第一象限</A>
+                    <B>第二象限</B>
+                    <C>第三象限</C>
+                    <D>第四象限</D>
                 </choices>
-                <answer></answer>
+                <answer>0</answer>
             </multichoice>
             <multichoice>
                 <head></head>
-                <picture></picture>
+                <picture>math_test_01.png</picture>
                 <choices>
-                    <A></A>
-                    <B></B>
-                    <C></C>
-                    <D></D>
+                    <A>A</A>
+                    <B>B</B>
+                    <C>C</C>
+                    <D>D</D>
                 </choices>
-                <answer></answer>
+                <answer>3</answer>
+                <note></note>
             </multichoice>
         </multichoicepart>
         <briefanswerquestionpart>
@@ -88,7 +91,7 @@
                     <C>adv.然而</C>
                     <D>adv.可能</D>
                 </choices>
-                <answer>1</answer>
+                <answer>3</answer>
             </multichoice>
         </multichoicepart>
         <briefanswerquestionpart>
@@ -121,10 +124,10 @@
                 <head></head>
                 <picture>Physics_test_01.png</picture>
                 <choices>
-                    <A></A>
-                    <B></B>
-                    <C></C>
-                    <D></D>
+                    <A>A</A>
+                    <B>B</B>
+                    <C>C</C>
+                    <D>D</D>
                 </choices>
                 <answer>3</answer>
             </multichoice>
@@ -142,18 +145,18 @@
             </briefanswerquestion>
         </briefanswerquestionpart>
     </physics>
-    <classicalwork>
+    <classicalworks>
         <multichoicepart>
             <multichoice>
-                <head></head>
+                <head>《红楼梦》120回中多少回是曹雪芹的手笔？</head>
                 <picture></picture>
                 <choices>
-                    <A></A>
-                    <B></B>
-                    <C></C>
-                    <D></D>
+                    <A>60回</A>
+                    <B>80回</B>
+                    <C>100回</C>
+                    <D>120回</D>
                 </choices>
-                <answer></answer>
+                <answer>3</answer>
             </multichoice>
             <multichoice>
                 <head></head>
@@ -179,19 +182,19 @@
                 <answer></answer>
             </briefanswerquestion>
         </briefanswerquestionpart>
-    </classicalwork>
+    </classicalworks>
     <harrypotter>
         <multichoicepart>
             <multichoice>
-                <head></head>
+                <head>罗恩的父亲在魔法部哪个部门工作？</head>
                 <picture></picture>
                 <choices>
-                    <A></A>
-                    <B></B>
-                    <C></C>
-                    <D></D>
+                    <A>魔法部长办公室及后勤处</A>
+                    <B>魔法事故和灾害司</B>
+                    <C>神奇动物管理动物司</C>
+                    <D>魔法部禁止滥用麻瓜物品司</D>
                 </choices>
-                <answer></answer>
+                <answer>3</answer>
             </multichoice>
             <multichoice>
                 <head></head>
@@ -221,26 +224,26 @@
     <commonsense>
         <multichoicepart>
             <multichoice>
-                <head></head>
+                <head>Switzerland指的是哪个国家？</head>
                 <picture></picture>
                 <choices>
-                    <A></A>
-                    <B></B>
-                    <C></C>
-                    <D></D>
+                    <A>冰岛</A>
+                    <B>芬兰</B>
+                    <C>瑞士</C>
+                    <D>瑞典</D>
                 </choices>
-                <answer></answer>
+                <answer>2</answer>
             </multichoice>
             <multichoice>
-                <head></head>
+                <head>2000年夏季奥运会是在哪个城市举办的？</head>
                 <picture></picture>
                 <choices>
-                    <A></A>
-                    <B></B>
-                    <C></C>
-                    <D></D>
+                    <A>雅典</A>
+                    <B>巴黎</B>
+                    <C>罗马</C>
+                    <D>悉尼</D>
                 </choices>
-                <answer></answer>
+                <answer>3</answer>
             </multichoice>
         </multichoicepart>
         <briefanswerquestionpart>

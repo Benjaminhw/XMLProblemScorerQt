@@ -31,14 +31,14 @@ void ProblemXMLParserC::ProblemXMLParser(QString problemfilepath,pAllData pData)
                             "physics",
                             "classicalworks",
                             "harrypotter",
-                            "Commonsense",};
+                            "commonsense",};
 
     int count=-1;
     for(auto& x:Names)
     {
         ++count;
         TiXmlElement* theSubjectName=ProblemLibrary->FirstChildElement(x.toStdString().c_str());
-        //这一段就是数据结构总结的很好才可以
+        //
         if(theSubjectName)
         {
             SubjectSets tempSubjectSet;
@@ -74,6 +74,7 @@ void ProblemXMLParserC::ProblemXMLParser(QString problemfilepath,pAllData pData)
                             {
                                 for(auto choice=choices->FirstChildElement();choice!=nullptr;choice=choice->NextSiblingElement())
                                 {
+                                    //这里其实NameOfChoice完全没用到 没有用到ABCD 只用到了他们的位置 如果要用到ABCD那答案要上map才可以
                                     tempMulti.nameofchoice.emplaceBack(choice->Value());
                                     qDebug()<<choice->Value();
                                     if(choice->GetText())
@@ -174,7 +175,7 @@ void ProblemXMLParserC::ProblemXMLParser(QString problemfilepath,pAllData pData)
                     }
                 }
             }
-            pData->SubjectMap.insert(count,tempSubjectSet);
+            pData->SubjectMap[count]=tempSubjectSet;
         }
     }
 }
