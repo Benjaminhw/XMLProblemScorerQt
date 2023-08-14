@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    //this->setMinimumSize(600,300);
     this->resize(200,200);
 }
 
@@ -76,7 +77,7 @@ void MainWindow::ProblemPrinter(pAllData pData)
     ui->scrollAreaWidgetContents->setMinimumSize(theSize);
 
     //要根据不同的学科选取不同的知识分布
-    //main subject主学科 主学科各占20分，数学，物理，英语三门共60分
+    //main subject主学科 主学科各占20分，数学，物理，英语三门共60分 HarryPotter和名著各10分，common sense 20分
     for(int x=0;x<6;++x)
     {
         int ProblemsNumberNeeded=0;
@@ -108,29 +109,46 @@ void MainWindow::ProblemPrinter(pAllData pData)
             QHBoxLayout* TempHLayout = new QHBoxLayout;
             TempHLayout->addWidget(SubjectLabel);
             TempHLayout->addWidget(tempLine);
-            TempHLayout->setStretch(0,0);
+            //TempHLayout->setStretch(0,0);
             TempHLayout->setStretch(1,1);
             TempHLayout->setContentsMargins(0,5,0,5);
             SubjectLayout->addLayout(TempHLayout);
 
-            //处理选择题区域 主学科预计两题选择
             //同时进行数据处理和UI处理
             //随机挑两题（按size来生成随机数）  //注意，这里主学科至少要两题
-            QVector<int> target;
-            for(int i=0;i<ProblemsNumberNeeded;++i)
+
+            //选择题题数
+            QVector<int> targetC;
+            for(int i=0;i<ProblemsNumberNeeded && i<y.MultiChoicesSet.size();++i)
             {
                 int tempsize = y.MultiChoicesSet.size();
                 int w=QRandomGenerator::global()->bounded(tempsize);
-                while(target.contains(w))
+                while(targetC.contains(w))
                 {
                     w=QRandomGenerator::global()->bounded(tempsize);
                 }
-                target.emplaceBack(w);
+                targetC.emplaceBack(w);
             }
+
+            //填空题题数
+            QVector<int> targetF;
+            for(int i=0;i<ProblemsNumberNeeded && i<y.BlankFillingSet.size();++i)
+            {
+                //qDebug()<< "here" <<y.BlankFillingSet.size();
+                int tempsize = y.BlankFillingSet.size();
+                int w=QRandomGenerator::global()->bounded(tempsize);
+                while(targetF.contains(w))
+                {
+                    w=QRandomGenerator::global()->bounded(tempsize);
+                }
+                targetF.emplaceBack(w);
+            }
+
+            //处理选择题区域
             //UI处理
             QVector<QButtonGroup*> tempVectorButtonGroup;
             //for(auto& z:y.MultiChoicesSet)
-            for(auto& v:target)
+            for(auto& v:targetC)
             {
                 auto z =y.MultiChoicesSet[v];
                 QVBoxLayout* ProblemLayout = new QVBoxLayout;
@@ -145,18 +163,14 @@ void MainWindow::ProblemPrinter(pAllData pData)
                     QImage image(z.picturepath);
                     QImageReader imageReader(z.picturepath);
                     QSize PicSize=imageReader.size();
-                    QImage imageC=image.scaled(PicSize,Qt::KeepAspectRatio);
-                    //ProblemHead->setPixmap(QPixmap(z.picturepath));
-                    ProblemHead->setPixmap(QPixmap::fromImage(imageC));
-                    //ProblemHead->setMinimumHeight(PicSize.height()-100);
-                    //ProblemHead->setMinimumWidth(PicSize.width()-100*PicSize.width()/PicSize.height());
-                    QSize PicSizeMax=QSize(PicSize.height()+100,PicSize.width()+100*PicSize.width()/PicSize.height());
-                    //No Big Use
-                    //QSize PicSizeMin=QSize(PicSize.height()-100,PicSize.width()-100*PicSize.width()/PicSize.height());
-                    ProblemHead->setMinimumSize(PicSize);
-                    ProblemHead->setMaximumSize(PicSizeMax);
-                    ProblemHead->setContentsMargins(0,0,0,10);//不设置空白的话莫名其妙会出现一些重叠
+                    QPixmap pixmap = QPixmap::fromImage(image);
+                    QPixmap fitpixmap = pixmap.scaled(PicSize.width(), PicSize.height(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+                    ProblemHead->setPixmap(fitpixmap);
+                    ProblemHead->setFixedWidth(PicSize.width());
+                    ProblemHead->setFixedHeight(PicSize.height());
+                    ProblemHead->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Ignored);
                     ProblemHead->setScaledContents(true);
+                    ProblemHead->setMinimumHeight(PicSize.height());
                 }
                 ProblemLayout->addWidget(ProblemHead);
                 //QFrame* tempFrame = new QFrame;
@@ -167,30 +181,63 @@ void MainWindow::ProblemPrinter(pAllData pData)
                     TempPushButton->setText(/*z.nameofchoice[k]+". "+*/z.choices[k]);
                     TempPushButton->setCheckable(true);
                     TempPushButton->setMaximumWidth(180);
+                    //TempPushButton->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Ignored);
                     tempGroup->addButton(TempPushButton);
                     tempGroup->setId(TempPushButton,k);
                     ProblemLayout->addWidget(TempPushButton);
                 }
                 tempVectorButtonGroup.emplaceBack(tempGroup);
+                ProblemLayout->setContentsMargins(0,0,0,0);
                 SubjectLayout->addLayout(ProblemLayout);
                 //DATA-录入答案。选择题录选项，填空题录字符串（多选项匹配）
-                AnswerSet tempAnswerSet;
                 //tempAnswerSet.Type=0; //类型为0代表是选择题
                 //tempAnswerSet.AnswerNum=z.answer;
                 pData->Answers.AnswerNums.emplace_back(z.answer);
             }
             //UI-一个学科的[选择题]处理完，把选项全部推入ButtonGroup的二维数组，由STL控制内存的删除
             ButtonGroups.emplaceBack(tempVectorButtonGroup);
+
+            //填空题添加区域
+            for(auto& w:targetF)
+            {
+                //qDebug()<<"here"<<targetF.size();
+                auto z =y.BlankFillingSet[w];
+                QVBoxLayout* ProblemLayout = new QVBoxLayout;
+                QLabel* ProblemHead = new QLabel;
+                if(z.head!="")
+                {
+                    ProblemHead->setText(z.head);
+                    ProblemHead->setWordWrap(true);
+                }
+                else if(z.picturepath!="")
+                {
+                    QImage image(z.picturepath);
+                    QImageReader imageReader(z.picturepath);
+                    QSize PicSize=imageReader.size();
+                    QImage imageC=image.scaled(PicSize,Qt::KeepAspectRatioByExpanding);
+                    QPixmap pixmap = QPixmap::fromImage(imageC);
+                    QPixmap fitpixmap = pixmap.scaled(PicSize.width(), PicSize.height(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+                    ProblemHead->setPixmap(fitpixmap);
+                    QSize PicSizeMax=QSize(PicSize.height()+100,PicSize.width()+100*PicSize.width()/PicSize.height());
+                    ProblemHead->setMinimumSize(PicSize);
+                    ProblemHead->setMaximumSize(PicSize);
+                    ProblemHead->setSizePolicy(QSizePolicy::Minimum,QSizePolicy::Minimum);
+                    ProblemHead->setScaledContents(true);
+                }
+                ProblemLayout->addWidget(ProblemHead);
+                QLineEdit* tempLineEdit = new QLineEdit;
+                tempLineEdit->setMaximumWidth(80);
+                ProblemLayout->addWidget(tempLineEdit);
+                //ProblemLayout->addStretch();
+                SubjectLayout->addLayout(ProblemLayout);
+                //SubjectLayout->addStretch();
+                //DATA-录入答案。填空题录字符串
+                pData->Answers.AnswerStrings.emplaceBack(z.answer);
+            }
         }
         //UI-学科添加完毕
         OverallLayout->addLayout(SubjectLayout);
     }
-    //Harry Potter占10分
-
-    //红楼和三国(classics)占10分 但这样可能2题都是红楼或者两题都是三国
-
-    //common sense占20分
-
     OverallLayout->addStretch();
 }
 
@@ -208,8 +255,8 @@ void MainWindow::TestScorer(pAllData pData)
     {
         for(auto& y:x)
         {
-            qDebug() <<"选择的ID是" << y->checkedId();
-            qDebug() <<"答案的ID是" << pData->Answers.AnswerNums[i];
+            //qDebug() <<"选择的ID是" << y->checkedId();
+            //qDebug() <<"答案的ID是" << pData->Answers.AnswerNums[i];
             if(y->checkedId()==pData->Answers.AnswerNums[i])
             {
                 //一题五分

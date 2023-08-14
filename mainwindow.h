@@ -1,10 +1,11 @@
 ﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
+#pragma once
 #include "qabstractbutton.h"
 #include "qdatetime.h"
-#pragma once
 #include "problemstructure.h"
 #include <QMainWindow>
+#include <QLineEdit>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -35,5 +36,6 @@ private:
     QVector<QVector<QButtonGroup*>> ButtonGroups;
     //QVector<QVector<int>> PickedNumber;
     QVector<QVector<int>> PickedNumber;
+    QVector<QLineEdit*> Blanks;
 };
 #endif // MAINWINDOW_H

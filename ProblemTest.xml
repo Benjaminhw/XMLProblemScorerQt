@@ -189,10 +189,10 @@
                 <head>罗恩的父亲在魔法部哪个部门工作？</head>
                 <picture></picture>
                 <choices>
-                    <A>魔法部长办公室及后勤处</A>
+                    <A>神秘事务司</A>
                     <B>魔法事故和灾害司</B>
                     <C>神奇动物管理动物司</C>
-                    <D>魔法部禁止滥用麻瓜物品司</D>
+                    <D>禁止滥用麻瓜物品司</D>
                 </choices>
                 <answer>3</answer>
             </multichoice>
