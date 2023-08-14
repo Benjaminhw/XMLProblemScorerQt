@@ -62,12 +62,12 @@ void ProblemXMLParserC::ProblemXMLParser(QString problemfilepath,pAllData pData)
                             if(head && head->GetText())
                             {
                                 tempMulti.head = head->GetText();//名称录入
-                                qDebug()<<tempMulti.head;
+                                //qDebug()<<tempMulti.head;
                             }
                             if(picture&&picture->GetText())
                             {
                                 tempMulti.picturepath = picture->GetText();
-                                qDebug()<<tempMulti.picturepath;
+                                //qDebug()<<tempMulti.picturepath;
                             }
                             TiXmlElement* choices=multichoice->FirstChildElement("choices");
                             if(choices)
@@ -76,11 +76,11 @@ void ProblemXMLParserC::ProblemXMLParser(QString problemfilepath,pAllData pData)
                                 {
                                     //这里其实NameOfChoice完全没用到 没有用到ABCD 只用到了他们的位置 如果要用到ABCD那答案要上map才可以
                                     tempMulti.nameofchoice.emplaceBack(choice->Value());
-                                    qDebug()<<choice->Value();
+                                    //qDebug()<<choice->Value();
                                     if(choice->GetText())
                                     {
                                         tempMulti.choices.emplaceBack(choice->GetText());
-                                        qDebug()<<choice->GetText();
+                                        //qDebug()<<choice->GetText();
                                     }
                                 }
                             }
@@ -116,12 +116,12 @@ void ProblemXMLParserC::ProblemXMLParser(QString problemfilepath,pAllData pData)
                             if(head && head->GetText())
                             {
                                 tempBF.head = head->GetText();//名称录入
-                                qDebug()<<tempBF.head;
+                                //qDebug()<<tempBF.head;
                             }
                             if(picture && picture->GetText())
                             {
                                 tempBF.picturepath=picture->GetText();
-                                qDebug()<<tempBF.picturepath;
+                                //qDebug()<<tempBF.picturepath;
                             }
                             TiXmlElement* answer=blankfilling->FirstChildElement("answer");
                             if(answer)
@@ -154,12 +154,12 @@ void ProblemXMLParserC::ProblemXMLParser(QString problemfilepath,pAllData pData)
                             if(head && head->GetText())
                             {
                                 tempBAQ.head = head->GetText();//名称录入
-                                qDebug()<<tempBAQ.head;
+                                //qDebug()<<tempBAQ.head;
                             }
                             if(picture && picture->GetText())
                             {
                                 tempBAQ.picturepath=picture->GetText();
-                                qDebug()<<tempBAQ.picturepath;
+                                //qDebug()<<tempBAQ.picturepath;
                             }
                             TiXmlElement* answer=briefanswerquestion->FirstChildElement("answer");
                             if(answer)

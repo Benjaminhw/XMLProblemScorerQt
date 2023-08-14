@@ -28,9 +28,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
+    ui->pushButton->setEnabled(false);
     ProblemXMLParserC MainParserFactory;
     //要有数据结构 框架 和抽题的比率
-    MainParserFactory.ProblemXMLParser("D:/learning/ProblemScorer/ProblemScorer/ProblemTest.xml",&Problems);
+    MainParserFactory.ProblemXMLParser("D:/C++Project/ProblemScorer/ProblemTest.xml",&Problems);
     ProblemPrinter(&Problems);
 
     //targetTime = QDateTime::currentDateTime().addSecs(2400);
@@ -157,6 +158,7 @@ void MainWindow::ProblemPrinter(pAllData pData)
                 {
                     ProblemHead->setText(z.head);
                     ProblemHead->setWordWrap(true);
+                    ProblemLayout->addWidget(ProblemHead);
                 }
                 else if(z.picturepath!="")
                 {
@@ -164,15 +166,14 @@ void MainWindow::ProblemPrinter(pAllData pData)
                     QImageReader imageReader(z.picturepath);
                     QSize PicSize=imageReader.size();
                     QPixmap pixmap = QPixmap::fromImage(image);
-                    QPixmap fitpixmap = pixmap.scaled(PicSize.width(), PicSize.height(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-                    ProblemHead->setPixmap(fitpixmap);
-                    ProblemHead->setFixedWidth(PicSize.width());
+                    ProblemHead->setPixmap(pixmap);
                     ProblemHead->setFixedHeight(PicSize.height());
-                    ProblemHead->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Ignored);
-                    ProblemHead->setScaledContents(true);
-                    ProblemHead->setMinimumHeight(PicSize.height());
+                    //qDebug()<<PicSize.height()<<ProblemHead->height();
+                    ProblemLayout->addWidget(ProblemHead);
+                    int StrangeSpace =abs(240-PicSize.height());
+                    ProblemLayout->addSpacing(StrangeSpace);
+                    //qDebug()<<PicSize.height()<<ProblemHead->height();
                 }
-                ProblemLayout->addWidget(ProblemHead);
                 //QFrame* tempFrame = new QFrame;
                 QButtonGroup* tempGroup = new QButtonGroup;
                 for(int k=0;k<z.choices.size();++k)
@@ -181,7 +182,8 @@ void MainWindow::ProblemPrinter(pAllData pData)
                     TempPushButton->setText(/*z.nameofchoice[k]+". "+*/z.choices[k]);
                     TempPushButton->setCheckable(true);
                     TempPushButton->setMaximumWidth(180);
-                    //TempPushButton->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Ignored);
+                    TempPushButton->setFixedHeight(25);
+                    TempPushButton->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
                     tempGroup->addButton(TempPushButton);
                     tempGroup->setId(TempPushButton,k);
                     ProblemLayout->addWidget(TempPushButton);
@@ -208,31 +210,32 @@ void MainWindow::ProblemPrinter(pAllData pData)
                 {
                     ProblemHead->setText(z.head);
                     ProblemHead->setWordWrap(true);
+                    ProblemLayout->addWidget(ProblemHead);
                 }
                 else if(z.picturepath!="")
                 {
                     QImage image(z.picturepath);
                     QImageReader imageReader(z.picturepath);
                     QSize PicSize=imageReader.size();
-                    QImage imageC=image.scaled(PicSize,Qt::KeepAspectRatioByExpanding);
-                    QPixmap pixmap = QPixmap::fromImage(imageC);
-                    QPixmap fitpixmap = pixmap.scaled(PicSize.width(), PicSize.height(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-                    ProblemHead->setPixmap(fitpixmap);
-                    QSize PicSizeMax=QSize(PicSize.height()+100,PicSize.width()+100*PicSize.width()/PicSize.height());
-                    ProblemHead->setMinimumSize(PicSize);
-                    ProblemHead->setMaximumSize(PicSize);
-                    ProblemHead->setSizePolicy(QSizePolicy::Minimum,QSizePolicy::Minimum);
-                    ProblemHead->setScaledContents(true);
+                    QPixmap pixmap = QPixmap::fromImage(image);
+                    ProblemHead->setPixmap(pixmap);
+                    ProblemHead->setFixedHeight(PicSize.height());
+                    //qDebug()<<PicSize.height()<<ProblemHead->height();
+                    ProblemLayout->addWidget(ProblemHead);
+                    int StrangeSpace =abs(240-PicSize.height());
+                    ProblemLayout->addSpacing(StrangeSpace);
+                    //qDebug()<<PicSize.height()<<ProblemHead->height();
                 }
-                ProblemLayout->addWidget(ProblemHead);
                 QLineEdit* tempLineEdit = new QLineEdit;
                 tempLineEdit->setMaximumWidth(80);
                 ProblemLayout->addWidget(tempLineEdit);
+                this->Blanks.emplaceBack(tempLineEdit);
                 //ProblemLayout->addStretch();
                 SubjectLayout->addLayout(ProblemLayout);
                 //SubjectLayout->addStretch();
                 //DATA-录入答案。填空题录字符串
                 pData->Answers.AnswerStrings.emplaceBack(z.answer);
+                qDebug()<<z.answer;
             }
         }
         //UI-学科添加完毕
@@ -265,6 +268,17 @@ void MainWindow::TestScorer(pAllData pData)
             ++i;
         }
     }
+    i =0;
+    for(auto& x:this->Blanks)
+    {
+        qDebug()<< x->text()<< pData->Answers.AnswerStrings[i];
+        if(x->text()==pData->Answers.AnswerStrings[i])
+        {
+            pData->Score+=5;
+        }
+        ++i;
+    }
+
     qDebug()<<pData->Score;
 }
 
