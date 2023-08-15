@@ -182,6 +182,13 @@
                 <answer></answer>
             </briefanswerquestion>
         </briefanswerquestionpart>
+        <blankfillingpart>
+            <blankfilling>
+                <head>许诺刘备,虽身在曹营,但“终身不设一谋”的谋士是谁?</head>
+                <picture></picture>
+                <answer>徐庶</answer>
+            </blankfilling>
+        </blankfillingpart>
     </classicalworks>
     <harrypotter>
         <multichoicepart>
