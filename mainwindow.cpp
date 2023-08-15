@@ -246,8 +246,16 @@ void MainWindow::ProblemPrinter(pAllData pData)
 
 void MainWindow::on_pushButton_2_clicked()
 {
+    //禁止再次点击交卷
+    ui->pushButton_2->setEnabled(false);
     //交卷
+    Problems.Score = 0;
     TestScorer(&Problems);
+    QMessageBox::information(this,
+        tr("你的分数为"),
+        tr((QString::number(Problems.Score)+"分").toStdString().c_str()),
+        QMessageBox::Ok | QMessageBox::Cancel,
+        QMessageBox::Ok);
 }
 
 void MainWindow::TestScorer(pAllData pData)
