@@ -75,11 +75,11 @@ void ProblemXMLParserC::ProblemXMLParser(QString problemfilepath,pAllData pData)
                                 for(auto choice=choices->FirstChildElement();choice!=nullptr;choice=choice->NextSiblingElement())
                                 {
                                     //这里其实NameOfChoice完全没用到 没有用到ABCD 只用到了他们的位置 如果要用到ABCD那答案要上map才可以
-                                    tempMulti.nameofchoice.emplaceBack(choice->Value());
+                                    tempMulti.nameofchoice.push_back(choice->Value());
                                     //qDebug()<<choice->Value();
                                     if(choice->GetText())
                                     {
-                                        tempMulti.choices.emplaceBack(choice->GetText());
+                                        tempMulti.choices.push_back(choice->GetText());
                                         //qDebug()<<choice->GetText();
                                     }
                                 }
@@ -90,7 +90,7 @@ void ProblemXMLParserC::ProblemXMLParser(QString problemfilepath,pAllData pData)
                             {
                                 tempMulti.answer=atoi(answer->GetText());
                             }
-                            tempSubjectSet.MultiChoicesSet.emplaceBack(tempMulti);
+                            tempSubjectSet.MultiChoicesSet.push_back(tempMulti);
                         }
                         else
                         {//边界的处理，如果是空指针，或者题目没有内容，就直接开始读下一个节点
@@ -128,7 +128,7 @@ void ProblemXMLParserC::ProblemXMLParser(QString problemfilepath,pAllData pData)
                             {
                                 tempBF.answer=answer->GetText();
                             }
-                            tempSubjectSet.BlankFillingSet.emplaceBack(tempBF);
+                            tempSubjectSet.BlankFillingSet.push_back(tempBF);
                         }
                         else
                         {//边界的处理，如果是空指针，就直接continue
@@ -166,7 +166,7 @@ void ProblemXMLParserC::ProblemXMLParser(QString problemfilepath,pAllData pData)
                             {
                                 tempBAQ.answer=answer->GetText();
                             }
-                            tempSubjectSet.BriefAnswerSet.emplaceBack(tempBAQ);
+                            tempSubjectSet.BriefAnswerSet.push_back(tempBAQ);
                         }
                         else
                         {//边界的处理，如果是空指针，就直接continue

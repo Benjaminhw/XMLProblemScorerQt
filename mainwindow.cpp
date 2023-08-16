@@ -128,7 +128,7 @@ void MainWindow::ProblemPrinter(pAllData pData)
                 {
                     w=QRandomGenerator::global()->bounded(tempsize);
                 }
-                targetC.emplaceBack(w);
+                targetC.push_back(w);
             }
 
             //填空题题数
@@ -142,7 +142,7 @@ void MainWindow::ProblemPrinter(pAllData pData)
                 {
                     w=QRandomGenerator::global()->bounded(tempsize);
                 }
-                targetF.emplaceBack(w);
+                targetF.push_back(w);
             }
 
             //处理选择题区域
@@ -170,7 +170,7 @@ void MainWindow::ProblemPrinter(pAllData pData)
                     ProblemHead->setFixedHeight(PicSize.height());
                     //qDebug()<<PicSize.height()<<ProblemHead->height();
                     ProblemLayout->addWidget(ProblemHead);
-                    int StrangeSpace =abs(240-PicSize.height());
+                    int StrangeSpace =abs(280-PicSize.height());
                     ProblemLayout->addSpacing(StrangeSpace);
                     //qDebug()<<PicSize.height()<<ProblemHead->height();
                 }
@@ -188,16 +188,16 @@ void MainWindow::ProblemPrinter(pAllData pData)
                     tempGroup->setId(TempPushButton,k);
                     ProblemLayout->addWidget(TempPushButton);
                 }
-                tempVectorButtonGroup.emplaceBack(tempGroup);
+                tempVectorButtonGroup.push_back(tempGroup);
                 ProblemLayout->setContentsMargins(0,0,0,0);
                 SubjectLayout->addLayout(ProblemLayout);
                 //DATA-录入答案。选择题录选项，填空题录字符串（多选项匹配）
                 //tempAnswerSet.Type=0; //类型为0代表是选择题
                 //tempAnswerSet.AnswerNum=z.answer;
-                pData->Answers.AnswerNums.emplace_back(z.answer);
+                pData->Answers.AnswerNums.push_back(z.answer);
             }
             //UI-一个学科的[选择题]处理完，把选项全部推入ButtonGroup的二维数组，由STL控制内存的删除
-            ButtonGroups.emplaceBack(tempVectorButtonGroup);
+            ButtonGroups.push_back(tempVectorButtonGroup);
 
             //填空题添加区域
             for(auto& w:targetF)
@@ -229,12 +229,12 @@ void MainWindow::ProblemPrinter(pAllData pData)
                 QLineEdit* tempLineEdit = new QLineEdit;
                 tempLineEdit->setMaximumWidth(80);
                 ProblemLayout->addWidget(tempLineEdit);
-                this->Blanks.emplaceBack(tempLineEdit);
+                this->Blanks.push_back(tempLineEdit);
                 //ProblemLayout->addStretch();
                 SubjectLayout->addLayout(ProblemLayout);
                 //SubjectLayout->addStretch();
                 //DATA-录入答案。填空题录字符串
-                pData->Answers.AnswerStrings.emplaceBack(z.answer);
+                pData->Answers.AnswerStrings.push_back(z.answer);
                 qDebug()<<z.answer;
             }
         }
