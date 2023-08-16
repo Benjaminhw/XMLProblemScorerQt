@@ -45,6 +45,21 @@
                 <picture></picture>
                 <answer>8</answer>
             </blankfilling>
+            <blankfilling>
+                <head></head>
+                <picture>math_test_03.png</picture>
+                <answer>27</answer>
+            </blankfilling>
+            <blankfilling>
+                <head></head>
+                <picture></picture>
+                <answer></answer>
+            </blankfilling>
+            <blankfilling>
+                <head></head>
+                <picture></picture>
+                <answer></answer>
+            </blankfilling>
         </blankfillingpart>
     </math>
     <english>
@@ -94,6 +109,28 @@
                 <answer>3</answer>
             </multichoice>
         </multichoicepart>
+        <blankfillingpart>
+            <blankfilling>
+                <head>The trip to Beijing d____ on the weather.</head>
+                <picture></picture>
+                <answer>depends</answer>
+            </blankfilling>
+            <blankfilling>
+                <head>He is now one of ______(popular) basketball players in the NBA</head>
+                <picture></picture>
+                <answer>the most popular</answer>
+            </blankfilling>
+            <blankfilling>
+                <head></head>
+                <picture></picture>
+                <answer></answer>
+            </blankfilling>
+            <blankfilling>
+                <head></head>
+                <picture></picture>
+                <answer></answer>
+            </blankfilling>
+        </blankfillingpart>
         <briefanswerquestionpart>
             <briefanswerquestion>
                 <head></head>
@@ -132,6 +169,28 @@
                 <answer>3</answer>
             </multichoice>
         </multichoicepart>
+        <blankfillingpart>
+            <blankfilling>
+                <head>水的沸腾是一种剧烈的____现象（填物态变化的名称）</head>
+                <picture></picture>
+                <answer>汽化</answer>
+            </blankfilling>
+            <blankfilling>
+                <head></head>
+                <picture>phy_test_01.png</picture>
+                <answer>竖直，东</answer>
+            </blankfilling>
+            <blankfilling>
+                <head></head>
+                <picture></picture>
+                <answer></answer>
+            </blankfilling>
+            <blankfilling>
+                <head></head>
+                <picture></picture>
+                <answer></answer>
+            </blankfilling>
+        </blankfillingpart>
         <briefanswerquestionpart>
             <briefanswerquestion>
                 <head></head>
@@ -204,6 +263,72 @@
                 <answer>3</answer>
             </multichoice>
             <multichoice>
+                <head>赫奇帕奇与哪个元素有关？</head>
+                <picture></picture>
+                <choices>
+                    <A>火焰</A>
+                    <B>水流</B>
+                    <C>空气</C>
+                    <D>地球</D>
+                </choices>
+                <answer>3</answer>
+            </multichoice>
+            <multichoice>
+                <head>塞德里克·迪格里（Cedric Diggory）在三强争霸赛中面对哪种龙？</head>
+                <picture></picture>
+                <choices>
+                    <A>瑞典短吻</A>
+                    <B>秘鲁毒牙</B>
+                    <C>威尔士绿龙</C>
+                    <D>挪威脊背龙</D>
+                </choices>
+                <answer>0</answer>
+            </multichoice>
+            <multichoice>
+                <head>谁冒充哈利（Harry）的《防御黑魔法》教授4年级的疯眼穆迪？</head>
+                <picture></picture>
+                <choices>
+                    <A>小天狼星布莱克</A>
+                    <B>小巴蒂·克劳奇</B>
+                    <C>彼得·佩蒂格鲁</C>
+                    <D>卢平</D>
+                </choices>
+                <answer>1</answer>
+            </multichoice>
+            <multichoice>
+                <head></head>
+                <picture></picture>
+                <choices>
+                    <A></A>
+                    <B></B>
+                    <C></C>
+                    <D></D>
+                </choices>
+                <answer></answer>
+            </multichoice>
+            <multichoice>
+                <head></head>
+                <picture></picture>
+                <choices>
+                    <A></A>
+                    <B></B>
+                    <C></C>
+                    <D></D>
+                </choices>
+                <answer></answer>
+            </multichoice>
+            <multichoice>
+                <head></head>
+                <picture></picture>
+                <choices>
+                    <A></A>
+                    <B></B>
+                    <C></C>
+                    <D></D>
+                </choices>
+                <answer></answer>
+            </multichoice>
+            <multichoice>
                 <head></head>
                 <picture></picture>
                 <choices>
@@ -227,6 +352,28 @@
                 <answer></answer>
             </briefanswerquestion>
         </briefanswerquestionpart>
+        <blankfillingpart>
+            <blankfilling>
+                <head>在多比的墓碑上完成题词：“多比在这里，____</head>
+                <picture></picture>
+                <answer>一个自由的精灵</answer>
+            </blankfilling>
+            <blankfilling>
+                <head>多比得到了哈利从卢修斯·马尔福那拿到的____，重获了自由</head>
+                <picture></picture>
+                <answer>袜子</answer>
+            </blankfilling>
+            <blankfilling>
+                <head></head>
+                <picture></picture>
+                <answer></answer>
+            </blankfilling>
+            <blankfilling>
+                <head></head>
+                <picture></picture>
+                <answer></answer>
+            </blankfilling>
+        </blankfillingpart>
     </harrypotter>
     <commonsense>
         <multichoicepart>
@@ -253,6 +400,28 @@
                 <answer>3</answer>
             </multichoice>
         </multichoicepart>
+        <blankfillingpart>
+            <blankfilling>
+                <head>“敏而好学，不耻下问”出自</head>
+                <picture></picture>
+                <answer>论语</answer>
+            </blankfilling>
+            <blankfilling>
+                <head>“似曾相识燕归来”的上一句是</head>
+                <picture></picture>
+                <answer>无可奈何花落去</answer>
+            </blankfilling>
+            <blankfilling>
+                <head></head>
+                <picture></picture>
+                <answer></answer>
+            </blankfilling>
+            <blankfilling>
+                <head></head>
+                <picture></picture>
+                <answer></answer>
+            </blankfilling>
+        </blankfillingpart>
         <briefanswerquestionpart>
             <briefanswerquestion>
                 <head></head>
