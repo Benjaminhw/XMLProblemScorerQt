@@ -2,9 +2,6 @@
 #include "tinyxml/tinyxml.h"
 #include "QDebug"
 
-
-
-
 //应该可以通过搜寻的对象反过来去命名
 void ProblemXMLParserC::ProblemXMLParser(QString problemfilepath,pAllData pData)
 {

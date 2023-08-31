@@ -59,7 +59,7 @@ void MainWindow::on_pushButton_clicked()
             timer1->stop();
         }else {
             // 更新倒计时显示
-            QString timeString = QString::number(RemainingTime/60) + "分" + QString::number(RemainingTime%60) + " 秒";
+            QString timeString = QString::number(RemainingTime/60) + u8"分" + QString::number(RemainingTime%60) + u8" 秒";
             ui->label_2->setText(timeString);
         }
     });
@@ -73,7 +73,6 @@ void MainWindow::ProblemPrinter(pAllData pData)
     //这个是试卷的总layout
     QVBoxLayout* OverallLayout = new QVBoxLayout;
     //ui->scrollArea->setLayout(OverallLayout);//会压缩
-    ui->scrollAreaWidgetContents->setLayout(OverallLayout);
     QSize theSize(150,100);
     ui->scrollAreaWidgetContents->setMinimumSize(theSize);
 
@@ -170,12 +169,14 @@ void MainWindow::ProblemPrinter(pAllData pData)
                     ProblemHead->setFixedHeight(PicSize.height());
                     //qDebug()<<PicSize.height()<<ProblemHead->height();
                     ProblemLayout->addWidget(ProblemHead);
-                    int StrangeSpace =abs(280-PicSize.height());
-                    ProblemLayout->addSpacing(StrangeSpace);
+                    //int StrangeSpace =abs(280-PicSize.height());
+                    //ProblemLayout->addSpacing(StrangeSpace);
+                    //ProblemHead->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Ignored);
                     //qDebug()<<PicSize.height()<<ProblemHead->height();
                 }
                 //QFrame* tempFrame = new QFrame;
                 QButtonGroup* tempGroup = new QButtonGroup;
+                QVBoxLayout* tempButtonLayout = new QVBoxLayout;
                 for(int k=0;k<z.choices.size();++k)
                 {
                     QPushButton* TempPushButton = new QPushButton;
@@ -186,9 +187,10 @@ void MainWindow::ProblemPrinter(pAllData pData)
                     TempPushButton->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
                     tempGroup->addButton(TempPushButton);
                     tempGroup->setId(TempPushButton,k);
-                    ProblemLayout->addWidget(TempPushButton);
+                    tempButtonLayout->addWidget(TempPushButton);
                 }
                 tempVectorButtonGroup.push_back(tempGroup);
+                ProblemLayout->addLayout(tempButtonLayout);
                 ProblemLayout->setContentsMargins(0,0,0,0);
                 SubjectLayout->addLayout(ProblemLayout);
                 //DATA-录入答案。选择题录选项，填空题录字符串（多选项匹配）
@@ -222,8 +224,9 @@ void MainWindow::ProblemPrinter(pAllData pData)
                     ProblemHead->setFixedHeight(PicSize.height());
                     //qDebug()<<PicSize.height()<<ProblemHead->height();
                     ProblemLayout->addWidget(ProblemHead);
-                    int StrangeSpace =abs(240-PicSize.height());
-                    ProblemLayout->addSpacing(StrangeSpace);
+                    //int StrangeSpace =abs(240-PicSize.height());
+                    //ProblemLayout->addSpacing(StrangeSpace);
+                    //ProblemHead->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Ignored);
                     //qDebug()<<PicSize.height()<<ProblemHead->height();
                 }
                 QLineEdit* tempLineEdit = new QLineEdit;
@@ -241,7 +244,8 @@ void MainWindow::ProblemPrinter(pAllData pData)
         //UI-学科添加完毕
         OverallLayout->addLayout(SubjectLayout);
     }
-    OverallLayout->addStretch();
+    ui->scrollAreaWidgetContents->setLayout(OverallLayout);
+    //OverallLayout->addStretch();
 }
 
 void MainWindow::on_pushButton_2_clicked()
