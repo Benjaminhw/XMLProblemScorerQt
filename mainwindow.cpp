@@ -10,13 +10,14 @@
 #include <QRandomGenerator>
 #include <QImage>
 #include <QImageReader>
+#include <QScreen>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //this->setMinimumSize(600,300);
+    //this->setMinimumSize(800,600);
     this->resize(200,200);
 }
 
@@ -70,11 +71,15 @@ void MainWindow::on_pushButton_clicked()
 //因为调用ui很麻烦，所以还是放到这个位置来处理
 void MainWindow::ProblemPrinter(pAllData pData)
 {
+    QScreen *screen = qApp->primaryScreen();
+    qreal dpiVal = screen->logicalDotsPerInch();
+
     //这个是试卷的总layout
     QVBoxLayout* OverallLayout = new QVBoxLayout;
     //ui->scrollArea->setLayout(OverallLayout);//会压缩
-    QSize theSize(150,100);
-    ui->scrollAreaWidgetContents->setMinimumSize(theSize);
+    QSize theSize(600,400);
+    ui->scrollArea->setMinimumSize(theSize);
+    int OverAllProblemNumber = 0;
 
     //要根据不同的学科选取不同的知识分布
     //main subject主学科 主学科各占20分，数学，物理，英语三门共60分 HarryPotter和名著各10分，common sense 20分
@@ -161,20 +166,27 @@ void MainWindow::ProblemPrinter(pAllData pData)
                 }
                 else if(z.picturepath!="")
                 {
-                    QImage image(z.picturepath);
+                    //QImage image(z.picturepath);
                     QImageReader imageReader(z.picturepath);
                     QSize PicSize=imageReader.size();
-                    QPixmap pixmap = QPixmap::fromImage(image);
-                    ProblemHead->setPixmap(pixmap);
-                    ProblemHead->setFixedHeight(PicSize.height());
-                    //qDebug()<<PicSize.height()<<ProblemHead->height();
+                    qDebug()<<PicSize.height()<<ProblemHead->height();
+                    QPixmap pixmap(z.picturepath);
+                    //ProblemHead->setFixedHeight(PicSize.height());
+                    auto pixmapchanged = pixmap.scaled(PicSize.width(),PicSize.height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
+                    ProblemHead->resize(PicSize);
+                    ProblemHead->setPixmap(pixmapchanged);
+                    qDebug()<<PicSize.height()<<ProblemHead->height();
                     ProblemLayout->addWidget(ProblemHead);
+                    ProblemLayout->setStretch(0,1);
+//                    QFrame* tempLine1 = new QFrame;
+//                    tempLine1->setFrameShape(QFrame::HLine);
+//                    ProblemLayout->addWidget(tempLine1);
+
                     //int StrangeSpace =abs(280-PicSize.height());
                     //ProblemLayout->addSpacing(StrangeSpace);
                     //ProblemHead->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Ignored);
                     //qDebug()<<PicSize.height()<<ProblemHead->height();
                 }
-                //QFrame* tempFrame = new QFrame;
                 QButtonGroup* tempGroup = new QButtonGroup;
                 QVBoxLayout* tempButtonLayout = new QVBoxLayout;
                 for(int k=0;k<z.choices.size();++k)
@@ -184,7 +196,7 @@ void MainWindow::ProblemPrinter(pAllData pData)
                     TempPushButton->setCheckable(true);
                     TempPushButton->setMaximumWidth(180);
                     TempPushButton->setFixedHeight(25);
-                    TempPushButton->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
+                    //TempPushButton->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Ignored);
                     tempGroup->addButton(TempPushButton);
                     tempGroup->setId(TempPushButton,k);
                     tempButtonLayout->addWidget(TempPushButton);
@@ -224,6 +236,7 @@ void MainWindow::ProblemPrinter(pAllData pData)
                     ProblemHead->setFixedHeight(PicSize.height());
                     //qDebug()<<PicSize.height()<<ProblemHead->height();
                     ProblemLayout->addWidget(ProblemHead);
+                    ProblemLayout->setStretch(0,1);
                     //int StrangeSpace =abs(240-PicSize.height());
                     //ProblemLayout->addSpacing(StrangeSpace);
                     //ProblemHead->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Ignored);
