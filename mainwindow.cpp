@@ -71,8 +71,10 @@ void MainWindow::on_pushButton_clicked()
 //因为调用ui很麻烦，所以还是放到这个位置来处理
 void MainWindow::ProblemPrinter(pAllData pData)
 {
-    QScreen *screen = qApp->primaryScreen();
-    qreal dpiVal = screen->logicalDotsPerInch();
+    //QScreen *screen = qApp->primaryScreen();
+    //qreal dpiVal = screen->logicalDotsPerInch ();
+    //qreal dpiVal = 0.8;
+    //qDebug()<<"dpiVal is "<<dpiVal;
 
     //这个是试卷的总layout
     QVBoxLayout* OverallLayout = new QVBoxLayout;
@@ -172,12 +174,15 @@ void MainWindow::ProblemPrinter(pAllData pData)
                     qDebug()<<PicSize.height()<<ProblemHead->height();
                     QPixmap pixmap(z.picturepath);
                     //ProblemHead->setFixedHeight(PicSize.height());
-                    auto pixmapchanged = pixmap.scaled(PicSize.width(),PicSize.height(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
-                    ProblemHead->resize(PicSize);
+                    //auto pixmapchanged = pixmap.scaled(PicSize.width()*dpiVal,PicSize.height()*dpiVal,Qt::KeepAspectRatio,Qt::SmoothTransformation);
+                    auto pixmapchanged = pixmap.scaled(PicSize*0.8,Qt::KeepAspectRatioByExpanding,Qt::SmoothTransformation);
+                    //pixmapchanged.setDevicePixelRatio(dpiVal);
+                    //ProblemHead->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
+                    ProblemHead->setMinimumHeight(PicSize.height()*1.5);
                     ProblemHead->setPixmap(pixmapchanged);
                     qDebug()<<PicSize.height()<<ProblemHead->height();
                     ProblemLayout->addWidget(ProblemHead);
-                    ProblemLayout->setStretch(0,1);
+                    ProblemLayout->insertStretch(1,1);
 //                    QFrame* tempLine1 = new QFrame;
 //                    tempLine1->setFrameShape(QFrame::HLine);
 //                    ProblemLayout->addWidget(tempLine1);
