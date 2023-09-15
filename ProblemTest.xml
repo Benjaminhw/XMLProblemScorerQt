@@ -402,12 +402,12 @@
         </multichoicepart>
         <blankfillingpart>
             <blankfilling>
-                <head>“敏而好学，不耻下问”出自</head>
+                <head>“敏而好学，不耻下问”出自(不需书名号)</head>
                 <picture></picture>
                 <answer>论语</answer>
             </blankfilling>
             <blankfilling>
-                <head>“似曾相识燕归来”的上一句是</head>
+                <head>“似曾相识燕归来”的上一句是（不需标点）</head>
                 <picture></picture>
                 <answer>无可奈何花落去</answer>
             </blankfilling>

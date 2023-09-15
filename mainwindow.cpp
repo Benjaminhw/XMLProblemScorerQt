@@ -157,17 +157,20 @@ void MainWindow::ProblemPrinter(pAllData pData)
             //for(auto& z:y.MultiChoicesSet)
             for(auto& v:targetC)
             {
+                ++OverAllProblemNumber;
                 auto z =y.MultiChoicesSet[v];
                 QVBoxLayout* ProblemLayout = new QVBoxLayout;
                 QLabel* ProblemHead = new QLabel;
                 if(z.head!="")
                 {
-                    ProblemHead->setText(z.head);
+                    ProblemHead->setText(QString::number(OverAllProblemNumber)+"."+z.head);
                     ProblemHead->setWordWrap(true);
                     ProblemLayout->addWidget(ProblemHead);
                 }
                 else if(z.picturepath!="")
                 {
+                    QLabel* problemNumber = new QLabel;
+                    problemNumber->setText(QString::number(OverAllProblemNumber)+".");
                     //QImage image(z.picturepath);
                     QImageReader imageReader(z.picturepath);
                     QSize PicSize=imageReader.size();
@@ -178,11 +181,12 @@ void MainWindow::ProblemPrinter(pAllData pData)
                     auto pixmapchanged = pixmap.scaled(PicSize*0.8,Qt::KeepAspectRatioByExpanding,Qt::SmoothTransformation);
                     //pixmapchanged.setDevicePixelRatio(dpiVal);
                     //ProblemHead->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
-                    ProblemHead->setMinimumHeight(PicSize.height()*1.5);
+                    ProblemHead->setMinimumHeight(PicSize.height()*1.6);
                     ProblemHead->setPixmap(pixmapchanged);
                     qDebug()<<PicSize.height()<<ProblemHead->height();
+                    ProblemLayout->addWidget(problemNumber);
                     ProblemLayout->addWidget(ProblemHead);
-                    ProblemLayout->insertStretch(1,1);
+                    //ProblemLayout->addStretch();
 //                    QFrame* tempLine1 = new QFrame;
 //                    tempLine1->setFrameShape(QFrame::HLine);
 //                    ProblemLayout->addWidget(tempLine1);
@@ -221,18 +225,21 @@ void MainWindow::ProblemPrinter(pAllData pData)
             //填空题添加区域
             for(auto& w:targetF)
             {
+                ++OverAllProblemNumber;
                 //qDebug()<<"here"<<targetF.size();
                 auto z =y.BlankFillingSet[w];
                 QVBoxLayout* ProblemLayout = new QVBoxLayout;
                 QLabel* ProblemHead = new QLabel;
                 if(z.head!="")
                 {
-                    ProblemHead->setText(z.head);
+                    ProblemHead->setText(QString::number(OverAllProblemNumber)+"."+z.head);
                     ProblemHead->setWordWrap(true);
                     ProblemLayout->addWidget(ProblemHead);
                 }
                 else if(z.picturepath!="")
                 {
+                    QLabel* problemNumber = new QLabel;
+                    problemNumber->setText(QString::number(OverAllProblemNumber)+".");
                     QImage image(z.picturepath);
                     QImageReader imageReader(z.picturepath);
                     QSize PicSize=imageReader.size();
@@ -240,6 +247,7 @@ void MainWindow::ProblemPrinter(pAllData pData)
                     ProblemHead->setPixmap(pixmap);
                     ProblemHead->setFixedHeight(PicSize.height());
                     //qDebug()<<PicSize.height()<<ProblemHead->height();
+                    ProblemLayout->addWidget(problemNumber);
                     ProblemLayout->addWidget(ProblemHead);
                     ProblemLayout->setStretch(0,1);
                     //int StrangeSpace =abs(240-PicSize.height());
@@ -248,7 +256,7 @@ void MainWindow::ProblemPrinter(pAllData pData)
                     //qDebug()<<PicSize.height()<<ProblemHead->height();
                 }
                 QLineEdit* tempLineEdit = new QLineEdit;
-                tempLineEdit->setMaximumWidth(80);
+                tempLineEdit->setMaximumWidth(160);
                 ProblemLayout->addWidget(tempLineEdit);
                 this->Blanks.push_back(tempLineEdit);
                 //ProblemLayout->addStretch();
@@ -278,6 +286,24 @@ void MainWindow::on_pushButton_2_clicked()
         tr((QString::number(Problems.Score)+"分").toStdString().c_str()),
         QMessageBox::Ok | QMessageBox::Cancel,
         QMessageBox::Ok);
+
+    QString FinalPrize;
+    if(Problems.Score < 60)
+    {
+        FinalPrize = "由于你分数过低，没有奖励。";
+    }
+    else if(Problems.Score < 70)
+    {
+        FinalPrize = "恭喜你，获得550ml可乐一瓶！";
+    }
+    else if(Problems.Score <80)
+    {
+        FinalPrize = "McDonald's套餐一份!";
+    }
+    else if(Problems.Score <90)
+    {
+        FinalPrize = "GTA5+巫师3 / 黑魂3+刺客信条:起源";
+    }
 }
 
 void MainWindow::TestScorer(pAllData pData)
@@ -295,6 +321,10 @@ void MainWindow::TestScorer(pAllData pData)
                 //一题五分
                 pData->Score+=5;
             }
+            else
+            {
+                y->button(pData->Answers.AnswerNums[i])->setStyleSheet({"color:red;font:bold"});
+            }
             ++i;
         }
     }
@@ -305,6 +335,12 @@ void MainWindow::TestScorer(pAllData pData)
         if(x->text()==pData->Answers.AnswerStrings[i])
         {
             pData->Score+=5;
+        }
+        else
+        {
+            QString tempText = x->text();
+            x->setText(tempText+"("+ pData->Answers.AnswerStrings[i] +")");
+            x->setStyleSheet({"color:red;font:bold"});
         }
         ++i;
     }
