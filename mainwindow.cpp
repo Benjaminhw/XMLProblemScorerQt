@@ -304,6 +304,15 @@ void MainWindow::on_pushButton_2_clicked()
     {
         FinalPrize = "GTA5+巫师3 / 黑魂3+刺客信条:起源";
     }
+    else
+    {
+        FinalPrize = "Nintendo Switch +塞尔达:王国之泪";
+    }
+    QMessageBox::information(this,
+        tr("奖品"),
+        FinalPrize,
+        QMessageBox::Ok | QMessageBox::Cancel,
+        QMessageBox::Ok);
 }
 
 void MainWindow::TestScorer(pAllData pData)
