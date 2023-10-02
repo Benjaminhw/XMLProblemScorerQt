@@ -26,6 +26,30 @@
                 <answer>3</answer>
                 <note></note>
             </multichoice>
+            <multichoice>
+                <head></head>
+                <picture>math01.png</picture>
+                <choices>
+                    <A>A</A>
+                    <B>B</B>
+                    <C>C</C>
+                    <D>D</D>
+                </choices>
+                <answer>0</answer>
+                <note></note>
+            </multichoice>
+            <multichoice>
+                <head></head>
+                <picture>math04.png</picture>
+                <choices>
+                    <A>A</A>
+                    <B>B</B>
+                    <C>C</C>
+                    <D>D</D>
+                </choices>
+                <answer>2</answer>
+                <note></note>
+            </multichoice>
         </multichoicepart>
         <briefanswerquestionpart>
             <briefanswerquestion>
@@ -41,14 +65,19 @@
         </briefanswerquestionpart>
         <blankfillingpart>
             <blankfilling>
-                <head>已知样本，x1，x2，x3, x4的平均数是3,则x1+2,x2+5,x3+6,x4+7的平均数为____</head>
+                <head>小英同时掷甲、乙两枚质地均匀的小立方体，立方体的每个面上分别标有数字(1,2,3,4,5,6)，记甲立方体朝上一面数字为x,乙立方体朝上一面数字为y，这样确定了一个点P的坐标(x,y)，那么p落在双曲线y=6/x上的概率为____(分数线请用"/"来代替)</head>
                 <picture></picture>
-                <answer>8</answer>
+                <answer>1/9</answer>
             </blankfilling>
             <blankfilling>
                 <head></head>
                 <picture>math_test_03.png</picture>
                 <answer>27</answer>
+            </blankfilling>
+            <blankfilling>
+                <head></head>
+                <picture>math03.png</picture>
+                <answer>2.8</answer>
             </blankfilling>
             <blankfilling>
                 <head></head>
@@ -168,6 +197,61 @@
                 </choices>
                 <answer>3</answer>
             </multichoice>
+            <multichoice>
+                <head></head>
+                <picture>phy01.png</picture>
+                <choices>
+                    <A>A</A>
+                    <B>B</B>
+                    <C>C</C>
+                    <D>D</D>
+                </choices>
+                <answer>3</answer>
+            </multichoice>
+            <multichoice>
+                <head></head>
+                <picture>phy02.png</picture>
+                <choices>
+                    <A>A</A>
+                    <B>B</B>
+                    <C>C</C>
+                    <D>D</D>
+                </choices>
+                <answer>2</answer>
+            </multichoice>
+            <multichoice>
+                <head>一台激光器朝着月球发射激光信号，经过2.7s后才接到从月球返回的信号，那么月球到地球之间的距离为__</head>
+                <picture></picture>
+                <choices>
+                    <A>8.1×10^8m</A>
+                    <B>4.05×10^5km</B>
+                    <C>8.1×10^5m</C>
+                    <D>4.05×10^8km</D>
+                </choices>
+                <answer>1</answer>
+            </multichoice>
+            <multichoice>
+                <head></head>
+                <picture>phy04.png</picture>
+                <choices>
+                    <A>A</A>
+                    <B>B</B>
+                    <C>C</C>
+                    <D>D</D>
+                </choices>
+                <answer>2</answer>
+            </multichoice>
+            <multichoice>
+                <head></head>
+                <picture>phy05.png</picture>
+                <choices>
+                    <A>A</A>
+                    <B>B</B>
+                    <C>C</C>
+                    <D>D</D>
+                </choices>
+                <answer>2</answer>
+            </multichoice>
         </multichoicepart>
         <blankfillingpart>
             <blankfilling>
@@ -182,8 +266,8 @@
             </blankfilling>
             <blankfilling>
                 <head></head>
-                <picture></picture>
-                <answer></answer>
+                <picture>phy_06.jpg</picture>
+                <answer>3</answer>
             </blankfilling>
             <blankfilling>
                 <head></head>
@@ -218,15 +302,26 @@
                 <answer>1</answer>
             </multichoice>
             <multichoice>
-                <head></head>
+                <head>一语未完，只听后院中有笑语声，说：“我来迟了，不曾迎接远客！”林黛玉思忖道：“这些人个个皆屏气如此，这来者是谁，这样放诞无礼？”心下想着，只见一群媳妇丫鬟拥着一个丽人，从后房进来。这个人打扮与姑娘们不同，彩绣辉煌，恍若神仙妃子，头上戴着金丝八宝攒珠髻，绾着朝阳五凤挂珠钗；项上带着赤金盘蛎螭璎珞圈；身上穿着缕金百蝶穿花大红洋缎窄裉袄，外罩五彩刻丝石青银鼠褂；下着翡翠撒花洋绉裙。一双丹凤三角眼，两弯柳叶掉梢眉,身量苗条，体格风骚。粉面含春威不露，丹唇未启笑先闻。  这一段描写的人是？</head>
                 <picture></picture>
                 <choices>
-                    <A></A>
-                    <B></B>
-                    <C></C>
-                    <D></D>
+                    <A>贾元春</A>
+                    <B>薛宝钗</B>
+                    <C>史湘云</C>
+                    <D>王熙凤</D>
                 </choices>
-                <answer></answer>
+                <answer>3</answer>
+            </multichoice>
+            <multichoice>
+                <head>宝玉笑道：“你爱打就打，这些东西原不过是借人所用，你爱这样，我爱那样，各自性情不同。比如那扇子原是扇的，你要撕着玩也可以使得，只是不可生气时拿他出气。就如杯盘，原是盛东西的，你喜听那一声响，就故意的碎了也可以使得，只是别在生气时拿他出气。这就是爱物了。”——宝玉是对谁说的这段话？</head>
+                <picture></picture>
+                <choices>
+                    <A>袭人</A>
+                    <B>黛玉</B>
+                    <C>探春</C>
+                    <D>晴雯</D>
+                </choices>
+                <answer>3</answer>
             </multichoice>
         </multichoicepart>
         <briefanswerquestionpart>
@@ -246,6 +341,16 @@
                 <head>许诺刘备,虽身在曹营,但“终身不设一谋”的谋士是谁?</head>
                 <picture></picture>
                 <answer>徐庶</answer>
+            </blankfilling>
+            <blankfilling>
+                <head>刘备除了糜、孙两位夫人，还有一位是（填姓氏）</head>
+                <picture></picture>
+                <answer>吴</answer>
+            </blankfilling>
+            <blankfilling>
+                <head>诸葛亮初出茅庐第一次“运筹帷幄之中，决胜千里之外”的地点是</head>
+                <picture></picture>
+                <answer>博望坡</answer>
             </blankfilling>
         </blankfillingpart>
     </classicalworks>
@@ -364,9 +469,9 @@
                 <answer>袜子</answer>
             </blankfilling>
             <blankfilling>
-                <head></head>
+                <head>哈利的教父，来自____家族</head>
                 <picture></picture>
-                <answer></answer>
+                <answer>布莱克</answer>
             </blankfilling>
             <blankfilling>
                 <head></head>
@@ -399,27 +504,49 @@
                 </choices>
                 <answer>3</answer>
             </multichoice>
+            <multichoice>
+                <head>以下哪种外币最为值钱？</head>
+                <picture></picture>
+                <choices>
+                    <A>美元</A>
+                    <B>欧元</B>
+                    <C>加元</C>
+                    <D>英镑</D>
+                </choices>
+                <answer>3</answer>
+            </multichoice>
+            <multichoice>
+                <head>解放战争的“三大战役”里，最早开始的战役是</head>
+                <picture></picture>
+                <choices>
+                    <A>辽沈战役</A>
+                    <B>淮海战役</B>
+                    <C>渡江战役</C>
+                    <D>平津战役</D>
+                </choices>
+                <answer>0</answer>
+            </multichoice>
         </multichoicepart>
         <blankfillingpart>
             <blankfilling>
-                <head>“敏而好学，不耻下问”出自(不需书名号)</head>
+                <head>国际标准单位制中0开尔文等于____摄氏度</head>
                 <picture></picture>
-                <answer>论语</answer>
+                <answer>-273.15</answer>
             </blankfilling>
             <blankfilling>
-                <head>“似曾相识燕归来”的上一句是（不需标点）</head>
+                <head>香港特别行政区的区花是什么？</head>
                 <picture></picture>
-                <answer>无可奈何花落去</answer>
+                <answer>紫荆花</answer>
             </blankfilling>
             <blankfilling>
-                <head></head>
+                <head>1光年大约为____亿公里</head>
                 <picture></picture>
-                <answer></answer>
+                <answer>94600</answer>
             </blankfilling>
             <blankfilling>
-                <head></head>
+                <head>蛔虫生活在人体内属于____关系</head>
                 <picture></picture>
-                <answer></answer>
+                <answer>寄生</answer>
             </blankfilling>
         </blankfillingpart>
         <briefanswerquestionpart>
